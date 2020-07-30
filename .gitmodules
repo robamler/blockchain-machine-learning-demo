@@ -1,0 +1,6 @@
+[submodule "ui"]
+	path = ui
+	url = ./ui
+[submodule "blockchain-node"]
+	path = blockchain-node
+	url = ./blockchain-node/
