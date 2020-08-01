@@ -1,6 +1,6 @@
 [submodule "ui"]
 	path = ui
-	url = ./ui
+	url = https://github.com/robamler/demo-ml-blockchain-ui.git
 [submodule "blockchain-node"]
 	path = blockchain-node
-	url = ./blockchain-node/
+	url = https://github.com/robamler/demo-ml-blockchain-node.git
