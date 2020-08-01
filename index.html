@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Minimal Demo: matrix factorization on a blockchain &mdash; Robert Bamler</title>
+  <meta name="robots" content="noindex">
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1.0">
+  <style>
+    html {
+      background-color: #fff;
+      font-size: 16px;
+    }
+
+    @media (min-width: 48em) {
+      html {
+        font-size: 18px;
+      }
+    }
+
+    body {
+      font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+    }
+
+    video {
+      width: 50em;
+      max-width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Minimal Demo: Matrix Factorization on a Blockchain</h1>
+  <p>
+    The screencast below shows a minimal demo of a distributed matrix factorization on a blockchain.
+    It runs on a custom blockchain implemented by <a href="https://robamler.github.io">Robert Bamler</a> based on the <a
+      href="https://substrate.dev">substrate framework</a>.
+    See <a href="https://github.com/robamler/blockchain-machine-learning-demo">code on Github</a>.
+  </p>
+
+  <video controls poster="cover-overlayed.png">
+    <source src="minimal-demo.webm" type="video/webm">
+    <source src="minimal-demo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <h2>What's Going on in This Video?</h2>
+  <p>
+    The above screencast shows a very simplistic movie recommendation system running decentrally on a blockchain.
+  <ul>
+    <li>
+      <em>0:00-0:04:</em>
+      Two nodes of the custom blockchain running next to each other (see log messages on the two terminals).
+      These two nodes are running on the same machine here for simplicity, but they could be running anywhere on the
+      world.
+      Importantly, both nodes are <em>peers</em> with equal rights, i.e., there is <em>no authority</em> that
+      orchestrates the training procedure.
+    </li>
+    <li>
+      <em>0:04-0:18:</em>
+      A graphical user interface is connected to each node.
+      On the left node, user Alice submits a first rating: she likes the TV show "Veep".
+    </li>
+    <li>
+      <em>0:18-0:35:</em>
+      User Alice queries the recommendation for a prediction whether or not she may like the TV show "Archer".
+      Since there haven't been any reviews for this show yet, the system cannot make any meaningful prediction and
+      returns a "neutral" predicted rating.
+    </li>
+    <li>
+      <em>0:35-0:58:</em>
+      On the right node, user Rob now submits two ratings: he likes the show "Veep" too and he also likes the show
+      "Archer".
+    </li>
+    <li>
+      <em>0:58-1:16:</em>
+      Back on the left node, Alice makes the same query as before: she asks the recommendation system whether it thinks
+      that she may like the show "Archer".
+      Now the system can infer from the similar tastes of Alice and Rob that Alice may like the show Archer too, and it
+      predicts a positive sentiment.
+    </li>
+  </ul>
+  </p>
+
+  <h2>What's Special About This?</h2>
+  <p>
+    Recommendation systems are of course not new.
+    Also, training a machine learning model on many different nodes that are connected through a network is a well
+    studied problem in the "federated learning" literature.
+    However, federated learning usually requires a central authority to orchestrate the learning process, and all other
+    nodes of the network have to trust the central authority for better or worse.
+    By contrast, this demo shows truly decentralized learning without any central authority.
+    All nodes that are involved in training the model are equal peers in a permissionless and trustless network.
+    The can also leave the network and return to it at any time without coordination.
+  </p>
+  <p>
+    This permissionlessness implies a second novelty:
+    in this demo, the model is trained in an extremely incremental way.
+    This requires postponing a new kind of "lazy" machine learning where certain commitments to trained model parameters
+    are postponed until a later time.
+    It turns out that this can be done by keeping track of posterior correlations between inferred user and item feature
+    vectors in a Bayesian interpretation of the model.
+  </p>
+
+  <h2>What's Missing?</h2>
+  <p>
+    This video is a screencast of a very simplistic recommendation system.
+    Its main purpose is to demonstrate that modern blockchain frameworks are powerful and ergonomic enough to be useful
+    to machine learning researchers.
+  </p>
+  <p>
+    Apart from matrix factorization being a very simplistic model for movie recommendations, the training algorithm
+    shown in this video also lacks important capabilities.
+    For example, had the last rating by user Rob been submitted before the first rating by user Alice, the
+    implementation shown here would not have been able to make a useful prediction for the query at the end.
+    This has to do with the form of posterior approximation, which currently takes only a limited amount of posterior
+    correlations into account and breaks symmetry too early.
+    More research about efficient approximate Bayesian inference methods that keep track of posterior correlations will
+    be necessary for fully useful decentralized machine learning on blockchains.
+  </p>
+
+  <h2>Copyright</h2>
+  <p>
+    This website, the screencast video, and the <a
+      href="https://github.com/robamler/blockchain-machine-learning-demo">implementation of the blockchain and user
+      interface</a> were created by <a href="https://robamler.github.io">Robert Bamler</a>.
+  </p>
+</body>
+
+</html>
