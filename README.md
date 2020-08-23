@@ -88,10 +88,9 @@ Click below to watch a screencast of a minimal demo:
 
 
 9. In the left-hand pane of the UI, click on "Matrix Factorization" and enjoy playing with an overly simplistic recommendation system :)
-    - Note: you won't be able to mak
 
 10. If you want to delete the blockchain and start over:
-    stop all running nodes (`Ctrl + C`), then from the `blockchain-node` directory, run
+    stop all running nodes (`Ctrl + C`); then, from the `blockchain-node` directory, run
 
     ```bash
     ./target/release/kitchen-node purge-chain --dev
