@@ -17,7 +17,7 @@ Click below to watch a screencast of a minimal demo:
     git clone --recursive git@github.com:robamler/blockchain-machine-learning-demo.git
     ```
 
-    - If you forgot the `--recursive` switch, just `cd` in the directory and run `git submodule init`.
+    - If you forgot the `--recursive` switch, just `cd` in the directory and run `git submodule update --init`.
 
 2. Set up rust and substrate:
 
